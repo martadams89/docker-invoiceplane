@@ -1,5 +1,4 @@
-FROM ubuntu:bionic-20190612
-LABEL maintainer="sameer@damagehead.com"
+FROM ubuntu:latest
 
 ENV PHP_VERSION=7.2 \
     INVOICEPLANE_VERSION=1.5.9 \

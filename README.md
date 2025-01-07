@@ -1,6 +1,6 @@
-[![Docker Repository on Quay.io](https://quay.io/repository/sameersbn/invoiceplane/status "Docker Repository on Quay.io")](https://quay.io/repository/sameersbn/invoiceplane)
+[![Docker Repository on Quay.io](https://quay.io/repository/martadams89/invoiceplane/status "Docker Repository on Quay.io")](https://quay.io/repository/martadams89/invoiceplane)
 
-# sameersbn/invoiceplane:1.5.9-3
+# martadams89/invoiceplane:1.5.9-3
 
 - [Introduction](#introduction)
   - [Contributing](#contributing)
@@ -45,18 +45,18 @@ If the above recommendations do not help then [report your issue](../../issues/n
 
 ## Installation
 
-Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/sameersbn/invoiceplane) and is the recommended method of installation.
+Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/martadams89/invoiceplane) and is the recommended method of installation.
 
-> **Note**: Builds are also available on [Quay.io](https://quay.io/repository/sameersbn/invoiceplane)
+> **Note**: Builds are also available on [Quay.io](https://quay.io/repository/martadams89/invoiceplane)
 
 ```bash
-docker pull sameersbn/invoiceplane:1.5.9-3
+docker pull martadams89/invoiceplane:1.5.9-3
 ```
 
 Alternatively you can build the image yourself.
 
 ```bash
-docker build -t sameersbn/invoiceplane github.com/sameersbn/docker-invoiceplane
+docker build -t martadams89/invoiceplane github.com/martadams89/docker-invoiceplane
 ```
 
 ## Quickstart
@@ -64,7 +64,7 @@ docker build -t sameersbn/invoiceplane github.com/sameersbn/docker-invoiceplane
 The quickest way to start using this image is with [docker-compose](https://docs.docker.com/compose/).
 
 ```bash
-wget https://raw.githubusercontent.com/sameersbn/docker-invoiceplane/master/docker-compose.yml
+wget https://raw.githubusercontent.com/martadams89/docker-invoiceplane/master/docker-compose.yml
 ```
 
 Update the `INVOICEPLANE_URL` environment variable in the `docker-compose.yml` file with the url from which InvoicePlane will be externally accessible.
@@ -82,7 +82,7 @@ docker run --name invoiceplane-mysql -itd --restart=always \
   --env 'DB_NAME=invoiceplane_db' \
   --env 'DB_USER=invoiceplane' --env 'DB_PASS=password' \
   --volume /srv/docker/invoiceplane/mysql:/var/lib/mysql \
-  sameersbn/mysql:5.2.26
+  martadams89/mysql:5.2.26
 ```
 
 Step 2. Launch the InvoicePlane php-fpm container
@@ -93,7 +93,7 @@ docker run --name invoiceplane -itd --restart=always \
   --env 'INVOICEPLANE_FQDN=invoice.example.com' \
   --env 'INVOICEPLANE_TIMEZONE=Asia/Kolkata' \
   --volume /srv/docker/invoiceplane/invoiceplane:/var/lib/invoiceplane \
-  sameersbn/invoiceplane:1.5.9-3 app:invoiceplane
+  martadams89/invoiceplane:1.5.9-3 app:invoiceplane
 ```
 
 Step 3. Launch a NGINX frontend container
@@ -103,7 +103,7 @@ docker run --name invoiceplane-nginx -itd --restart=always \
   --link invoiceplane:php-fpm \
   --volumes-from invoiceplane \
   --publish 10080:80 \
-  sameersbn/invoiceplane:1.5.9-3 app:nginx
+  martadams89/invoiceplane:1.5.9-3 app:nginx
 ```
 
 Point your browser to [http://invoice.example.com:10080/setup](http://invoice.example.com:10080/setup) to complete the setup.
@@ -137,7 +137,7 @@ Relaunch the container with the `app:backup:create` argument.
 
 ```bash
 docker run --name invoiceplane -it --rm [OPTIONS] \
-  sameersbn/invoiceplane:1.5.9-3 app:backup:create
+  martadams89/invoiceplane:1.5.9-3 app:backup:create
 ```
 
 The backup will be created in the `backups/` folder of the [Persistent](#persistence) volume. You can change the location using the `INVOICEPLANE_BACKUPS_DIR` configuration parameter.
@@ -166,7 +166,7 @@ Relaunch the container with the `app:backup:restore` argument. Ensure you launch
 
 ```bash
 docker run --name invoiceplane -it --rm [OPTIONS] \
-  sameersbn/invoiceplane:1.5.9-3 app:backup:restore
+  martadams89/invoiceplane:1.5.9-3 app:backup:restore
 ```
 
 A list of existing backups will be displayed. Select a backup you wish to restore.
@@ -175,7 +175,7 @@ To avoid this interaction you can specify the backup filename using the `BACKUP`
 
 ```bash
 docker run --name invoiceplane -it --rm [OPTIONS] \
-  sameersbn/invoiceplane:1.5.9-3 app:backup:restore BACKUP=1417624827_invoiceplane_backup.tar
+  martadams89/invoiceplane:1.5.9-3 app:backup:restore BACKUP=1417624827_invoiceplane_backup.tar
 ```
 
 ## Upgrading
@@ -185,7 +185,7 @@ To upgrade to newer releases:
   1. Download the updated Docker image:
 
   ```bash
-  docker pull sameersbn/invoiceplane:1.5.9-3
+  docker pull martadams89/invoiceplane:1.5.9-3
   ```
 
   2. Stop the currently running image:
@@ -205,7 +205,7 @@ To upgrade to newer releases:
   ```bash
   docker run -name invoiceplane -itd \
     [OPTIONS] \
-    sameersbn/invoiceplane:1.5.9-3
+    martadams89/invoiceplane:1.5.9-3
   ```
 
 Point your browser to [http://invoice.example.com:10080/setup](http://invoice.example.com:10080/setup) to complete the upgrade.

@@ -120,7 +120,7 @@ invoiceplane_finalize_database_parameters() {
     DB_HOST=${DB_HOST:-$MYSQL_PORT_3306_TCP_ADDR}
     DB_PORT=${DB_PORT:-$MYSQL_PORT_3306_TCP_PORT}
 
-    # support for linked sameersbn/mysql image
+    # support for linked martadams89/mysql image
     DB_USER=${DB_USER:-$MYSQL_ENV_DB_USER}
     DB_PASS=${DB_PASS:-$MYSQL_ENV_DB_PASS}
     DB_NAME=${DB_NAME:-$MYSQL_ENV_DB_NAME}
@@ -300,7 +300,7 @@ backup_restore_validate() {
     echo "ERROR: "
     echo "  Cannot restore backup for version ${backup_info_invoiceplane_version} on a ${INVOICEPLANE_VERSION} instance."
     echo "  You can only restore backups generated for versions <= ${INVOICEPLANE_VERSION}."
-    echo "  Please use sameersbn/invoiceplane:${backup_info_invoiceplane_version} to restore this backup."
+    echo "  Please use martadams89/invoiceplane:${backup_info_invoiceplane_version} to restore this backup."
     echo "  Cannot continue. Aborting!"
     echo
     return 1
