@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:bionic
 
 ENV PHP_VERSION=7.2 \
     INVOICEPLANE_VERSION=1.5.9 \
